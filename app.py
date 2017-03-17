@@ -55,15 +55,21 @@ def webhook():
 @app.route('/getdata', methods=['POST'])
 def getdata():
     req = request.get_json(silent=True, force=True)
-    print("Request:")
-    print(json.dumps(req, indent=4))
-    return {
+    data = request.get_json()
+    log(data)
+
+    res = {
         "speech": "Deepanshu The Great",
         "displayText": "Deepanshu The Great",
         # "data": data,
         # "contextOut": [],
         "source": "agent"
         }
+    res = json.dumps(res, indent=4)
+    # print(res)
+    r = make_response(res)
+    r.headers['Content-Type'] = 'application/json'
+    return r
 
 def send_message(recipient_id, message_text):
 
