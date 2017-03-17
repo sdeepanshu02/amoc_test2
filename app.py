@@ -81,6 +81,7 @@ def process_text_message(msg):
     request.query = msg
 
     response = json.loads(request.getresponse().read().decode('utf-8'))
+    log(response)
     responseStatus = response['status']['code']
     if (responseStatus == 200):
         # Sending the textual response of the bot.
