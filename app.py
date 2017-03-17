@@ -3,7 +3,7 @@ import sys
 import json
 
 import requests
-from flask import Flask, request
+from flask import Flask, request, make_response
 
 app = Flask(__name__)
 
@@ -56,7 +56,8 @@ def webhook():
 def getdata():
     req = request.get_json(silent=True, force=True)
     data = request.get_json()
-    log(data)
+    print("Request:")
+    print(json.dumps(req, indent=4))
 
     res = {
         "speech": "Deepanshu The Great",
