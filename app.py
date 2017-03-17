@@ -52,6 +52,18 @@ def webhook():
 
     return "ok", 200
 
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    req = request.get_json(silent=True, force=True)
+    print("Request:")
+    print(json.dumps(req, indent=4))
+    return {
+        "speech": "Deepanshu The Great",
+        "displayText": "Deepanshu The Great",
+        # "data": data,
+        # "contextOut": [],
+        "source": "agent"
+        }
 
 def send_message(recipient_id, message_text):
 
